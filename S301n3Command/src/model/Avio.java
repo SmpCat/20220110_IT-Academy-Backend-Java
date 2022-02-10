@@ -7,7 +7,7 @@ public class Avio extends Vehicle {
 	}
 
 	public Avio(String nomVehicle) {
-		super(nomVehicle);
+		super(nomVehicle); 
 	}
 
 }
