@@ -17,14 +17,15 @@ public class Controller {
 	private Vehicle cotxe, bicicleta, avio, vaixell;
 	private IVehicleOperation vehicleOperation;
 	private VehicleOperationExecutor vehicleOperationExecutor;
-	private View view = new View();
+	private View view;
 	
 	public Controller() {
 		cotxe = new Cotxe("cotxe");
 		bicicleta = new Bicicleta("bicicleta");
 		avio = new Avio("avió");
 		vaixell = new Vaixell("vaixell");
-		vehicleOperationExecutor = new VehicleOperationExecutor();	
+		vehicleOperationExecutor = new VehicleOperationExecutor();
+		view = new View();
 	}
 	
 	public void tractarPeticions() {

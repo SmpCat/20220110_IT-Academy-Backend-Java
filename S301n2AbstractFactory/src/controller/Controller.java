@@ -8,10 +8,10 @@ import view.View;
 
 public class Controller {
 	
-	private View view = new View();
+	private View view;
 	
 	public Controller() {
-	
+		view = new View();
 	}
 	
 	public void tractarPeticions() {
