@@ -1,0 +1,53 @@
+{
+	"info": {
+		"_postman_id": "88502eb4-b3df-4027-86d1-03eeea31469a",
+		"name": "S401n1Fase3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fase3.1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{IP}}:{{port}}/",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fase3.2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{IP}}:{{port}}/nom?nom=Salva",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"nom"
+					],
+					"query": [
+						{
+							"key": "nom",
+							"value": "Salva"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
