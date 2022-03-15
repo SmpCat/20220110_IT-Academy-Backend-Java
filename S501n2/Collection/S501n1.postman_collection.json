@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "6ffd1f3c-10e0-483b-b92c-7f4ddb10b176",
+		"name": "S501n1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST /shops/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops?nom=Botiga563&capacitat=234",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops"
+					],
+					"query": [
+						{
+							"key": "nom",
+							"value": "Botiga563"
+						},
+						{
+							"key": "capacitat",
+							"value": "234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /shops/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /shops/{ID}/pictures",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops/26/pictures?nom=Odisea23ee&autor=Homero4553534&preu=24.32",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops",
+						"26",
+						"pictures"
+					],
+					"query": [
+						{
+							"key": "nom",
+							"value": "Odisea23ee"
+						},
+						{
+							"key": "autor",
+							"value": "Homero4553534"
+						},
+						{
+							"key": "preu",
+							"value": "24.32"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /shops/{ID}/pictures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops/2/pictures",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops",
+						"2",
+						"pictures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /shops/{ID}/pictures",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops/2/pictures",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops",
+						"2",
+						"pictures"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
