@@ -130,7 +130,7 @@ public class JugadorService implements IJugadorService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public float obtenirPercentatgeMigExitTotalJugadors() throws Exception {
+	public Float obtenirPercentatgeMigExitTotalJugadors() throws Exception {
 		
 		Float percentatgeMigEncerts = null;
 		Float numeroTotalDeTirades = (float) tiradaRepository.countNotNull();
@@ -140,7 +140,8 @@ public class JugadorService implements IJugadorService {
 			percentatgeMigEncerts = (numeroDeTiradesGuanyades * 100) / numeroTotalDeTirades;
 		} else {
 			throw new Exception("Error: No existeix cap tirada, o bé totes, han estan eliminades.");
-		}
+		} 
+		
 		return percentatgeMigEncerts;
 	}
 

@@ -12,7 +12,7 @@ public interface IJugadorService {
 	public void eliminarTiradesJugador(Long idJugador) throws Exception;
 	public Iterable<JugadorDTO> llistarJugadors() throws Exception;
 	public Iterable<Tirada> llistarTiradesJugador(Long idJugador) throws Exception;
-	public float obtenirPercentatgeMigExitTotalJugadors() throws Exception; 
+	public Float obtenirPercentatgeMigExitTotalJugadors() throws Exception; 
 	public Jugador obtenirJugadorPitjorPercentatge() throws Exception;
 	public Jugador obtenirJugadorMillorPercentatge() throws Exception;
 }
