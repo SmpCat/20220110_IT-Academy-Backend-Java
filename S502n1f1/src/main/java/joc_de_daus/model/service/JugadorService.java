@@ -45,9 +45,10 @@ public class JugadorService implements IJugadorService {
 		if (jugadorOptional.isPresent()) {
 			jugador = jugadorOptional.get();
 			validarJugador(jugadorRequest);
-			jugador.setNom(jugadorRequest.getNom());
-			if (jugador.getNom().isEmpty()) {
+			if (jugadorRequest.getNom().isEmpty()) {
 				jugador.setNom("ANÒNIM");
+			} else {
+				jugador.setNom(jugadorRequest.getNom());
 			}
 		} else {
 			throw new Exception("Error: El jugador amb id '" + jugadorRequest.getId() + "' no exixteix.");
