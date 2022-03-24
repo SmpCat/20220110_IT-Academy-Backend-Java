@@ -40,41 +40,36 @@ public class JugadorService implements IJugadorService {
 	@Transactional
 	public Jugador modificarNomJugador(Jugador jugadorRequest) throws Exception {
 		
-		Jugador jugador = null;
 		Optional<Jugador> jugadorOptional = jugadorRepository.findById(jugadorRequest.getId());
 		if (jugadorOptional.isPresent()) {
-			jugador = jugadorOptional.get();
+			Jugador jugador = jugadorOptional.get();
 			validarJugador(jugadorRequest);
 			if (jugadorRequest.getNom().isEmpty()) {
 				jugador.setNom("ANÒNIM");
 			} else {
 				jugador.setNom(jugadorRequest.getNom());
 			}
+			return jugadorRepository.save(jugador);
 		} else {
 			throw new Exception("Error: El jugador amb id '" + jugadorRequest.getId() + "' no exixteix.");
 		}
-		return jugador;
 	}
 	
 	@Override
 	@Transactional
 	public Tirada tirarDaus(Long idJugador) throws Exception {
 		
-		Tirada tirada = null;
-		
 		Optional<Jugador> jugadorOptional = jugadorRepository.findById(idJugador);
 		if(jugadorOptional.isPresent()) {
 			Jugador jugador = jugadorOptional.get();
-			tirada = new Tirada();
+			Tirada tirada = new Tirada();
 			tirada.setJugador(jugador);
 			tirada.setValorDau1(aleatori(1,6));
 			tirada.setValorDau2(aleatori(1,6));
-			tiradaRepository.save(tirada);
+			return tiradaRepository.save(tirada);
 		} else {
 			throw new Exception("Error: El jugador amb id '" + idJugador + "' no exixteix.");
 		}
-		
-		return tiradaRepository.save(tirada);
 	}
 
 	@Override
@@ -83,9 +78,13 @@ public class JugadorService implements IJugadorService {
 		
 		Optional<Jugador> jugadorOptional = jugadorRepository.findById(idJugador);
 		if (jugadorOptional.isPresent()) {
-			jugadorOptional.get().setTirades(new ArrayList<Tirada>());
+			if (jugadorOptional.get().getTirades().size() > 0) {
+				jugadorOptional.get().setTirades(new ArrayList<Tirada>());
+			} else {
+				throw new Exception("Error: No existeix cap tirada, o bé totes, han estan eliminades.");
+			}	
 		} else {
-			throw new Exception("Error: El jugador amb id '" + idJugador + "' no exixteix.");
+			throw new Exception("Error: El jugador amb id '" + idJugador + "' no exixteix.");	
 		}
 	}
 
@@ -117,33 +116,27 @@ public class JugadorService implements IJugadorService {
 	@Transactional(readOnly=true)
 	public Iterable<Tirada> llistarTiradesJugador(Long idJugador) throws Exception {
 		
-		Iterable<Tirada> tirades = null;
-		
 		Optional<Jugador> jugadorOptional = jugadorRepository.findById(idJugador);
 		if(jugadorOptional.isPresent()) {
-			tirades = tiradaRepository.findAllByJugador(jugadorOptional.get());
+			return tiradaRepository.findAllByJugador(jugadorOptional.get());
 		} else {
 			throw new Exception("Error: El jugador amb id '" + idJugador + "' no exixteix.");
 		}
-		
-		return tirades;
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public Float obtenirPercentatgeMigExitTotalJugadors() throws Exception {
 		
-		Float percentatgeMigEncerts = null;
 		Float numeroTotalDeTirades = (float) tiradaRepository.countNotNull();
 		
 		if (numeroTotalDeTirades > 0) {
 			Float numeroDeTiradesGuanyades = (float) tiradaRepository.countValorDausIgualASetNotNull();
-			percentatgeMigEncerts = (numeroDeTiradesGuanyades * 100) / numeroTotalDeTirades;
+			Float percentatgeMigEncerts = (numeroDeTiradesGuanyades * 100) / numeroTotalDeTirades;
+			return percentatgeMigEncerts;
 		} else {
 			throw new Exception("Error: No existeix cap tirada, o bé totes, han estan eliminades.");
 		} 
-		
-		return percentatgeMigEncerts;
 	}
 
 	@Override
